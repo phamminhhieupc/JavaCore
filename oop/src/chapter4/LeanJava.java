@@ -2,9 +2,9 @@ package chapter4;
 
 public class LeanJava {
     public static void main(String[] args) {
-        Student st1 = new Student();
-        st1.name = "hieu";
-        st1.age = 20;
-        System.out.println(st1.name + " " + st1.age);
+        Student st1 = new Student("hieu", 20);
+        st1.setAge(30);
+        
+        System.out.println(st1.getName() + " " + st1.getAge());
     }
 }
