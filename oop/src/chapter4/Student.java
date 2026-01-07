@@ -1,77 +1,82 @@
 package chapter4;
 
 abstract class SinhVien {
-    protected String id;
-    protected String name;
-    protected double price;
-    protected double tax;
 
-    abstract void tinhDiem();
 
-    public SinhVien(String id, String name, double price, double tax) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.tax = tax;
-    }
+    abstract double getScore();
 
-    public double getPriceTax() {
-        return this.price * this.tax;
-    }
-
-    public void info() {
-        System.out.println("hello");
-    }
 }
 
 class SinhVienIT extends SinhVien {
-    private String language;
 
-    public SinhVienIT(String id, String name, double price, double tax, String language) {
-        super(id, name, price, tax);
-        this.language = language;
+    private double scoreJava;
+    private double scoreHTML;
+
+    public double getScoreJava() {
+        return scoreJava;
     }
 
-    public String getLanguage() {
-        return language;
+    public void setScoreJava(double scoreJava) {
+        this.scoreJava = scoreJava;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public double getScoreHTML() {
+        return scoreHTML;
+    }
+
+    public void setScoreHTML(double scoreHTML) {
+        this.scoreHTML = scoreHTML;
+    }
+
+    public SinhVienIT(double scoreJava, double scoreHTML) {
+        this.scoreJava = scoreJava;
+        this.scoreHTML = scoreHTML;
     }
 
     @Override
-    void tinhDiem() {
-
+    double getScore() {
+        return (this.scoreJava * 2 + this.scoreHTML) / 3;
     }
 }
 
 class SinhVienCoKhi extends SinhVien {
-    private String skill;
+    private double scoreCNC;
+    private double scorePLC;
 
-    public SinhVienCoKhi(String id, String name, double price, double tax, String skill) {
-        super(id, name, price, tax);
-        this.skill = skill;
+    public double getScoreCNC() {
+        return scoreCNC;
     }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public void setScoreCNC(double scoreCNC) {
+        this.scoreCNC = scoreCNC;
     }
 
-    public String getSkill() {
-        return skill;
+    public double getScorePLC() {
+        return scorePLC;
+    }
+
+    public void setScorePLC(double scorePLC) {
+        this.scorePLC = scorePLC;
+    }
+
+    public SinhVienCoKhi(double scoreCNC, double scorePLC) {
+        this.scoreCNC = scoreCNC;
+        this.scorePLC = scorePLC;
     }
 
     @Override
-    void tinhDiem() {
-        
+    double getScore() {
+        return (this.scoreCNC + this.scorePLC) / 2;
     }
 }
 
 public class Student {
     public static void main(String[] args) {
-        SinhVienIT sv = new SinhVienIT("1", "hieu", 10, 0.2, "java");
-        System.out.println(sv.getPriceTax());
+        SinhVien sv1 = new SinhVienIT(10, 9);
+        SinhVien sv2 = new SinhVienCoKhi(8, 6);
+        System.out.println(sv1.getScore());
+        System.out.println(sv2.getScore());
+
     }
 
 
